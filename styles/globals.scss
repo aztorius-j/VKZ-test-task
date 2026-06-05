@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------------
+// This file is for global import in root layout.
+// -----------------------------------------------------------------------------
+
+@use 'normalize';
+@use 'style-delete';
+
+@use 'breakpoints';
+@use 'base';
+
+body {
+  font-family: var(--font-objectivity), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #0a0a0a;
+  background: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

@@ -1,0 +1,11 @@
+# Build artifacts
+.next
+out
+build
+coverage
+
+# Dependencies
+node_modules
+
+# Fonts / binary assets
+public/fonts
