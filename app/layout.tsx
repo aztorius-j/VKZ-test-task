@@ -29,6 +29,13 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en' className={objectivity.variable}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `history.scrollRestoration = 'manual'; window.scrollTo(0, 0);`,
+          }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   )
