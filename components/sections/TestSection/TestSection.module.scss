@@ -7,42 +7,29 @@ html {
 .section {
   min-height: 100svh;
   background-color: #f7f5ff;
-  position: relative;
 }
 
 .stickyContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   height: 100svh;
+  padding-inline: 0.5rem;
 }
 
-.paddingEl {
-  flex: 1;
-  width: 100%;
-  min-height: 5rem;
-}
-
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-}
-
-.centerContainer {
-  width: 62rem;
+.textContainer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 62rem;
+  padding-bottom: 10rem;
+  margin-top: auto;
 }
 
 .title {
   font-size: 6rem;
   font-weight: 400;
   line-height: 120%;
-  letter-spacing: -2.5px;
+  letter-spacing: -0.15625rem;
   text-align: center;
 }
 
@@ -50,17 +37,16 @@ html {
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 130%;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.05rem;
   text-align: center;
 }
 
 .qrContainer {
   display: flex;
   justify-content: center;
-  width: 100%;
   height: 6.25rem;
   position: relative;
-  z-index: 6;
+  z-index: 3;
 }
 
 .qrWrapper {
@@ -71,10 +57,6 @@ html {
   aspect-ratio: 1 / 1;
   background-color: #e6c3ff;
   border-radius: 1.25rem;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .qrCode {
@@ -82,37 +64,44 @@ html {
 }
 
 .animationContainer {
-  width: 62rem;
-  height: 12.5rem;
+  width: 100vw;
+  height: var(--iphoneHeight);
+  position: absolute;
+  top: 100svh;
+  left: 0;
+  z-index: 4;
+}
+
+.iphoneWrapper {
+  width: 50rem;
+  height: var(--iphoneHeight);
+  font-size: 0;
   position: relative;
   top: 0;
-  z-index: 7;
+  left: 50%;
+  transform: translateX(-66.8%);
 }
 
 .iphone {
   width: 100%;
   position: absolute;
-  top: 3rem;
-  right: 16.5%;
-  z-index: 3;
+  top: 0;
+  left: 0;
 }
 
 .up {
   width: 20.25rem;
   position: absolute;
-  top: 6.25rem;
-  // left: 31.5rem;
-  // left: 25%;
-  z-index: 2;
+  top: 0;
+  left: 0;
   filter: blur(4px);
 }
 
 .down {
   width: 33.125rem;
   position: absolute;
-  bottom: 2%;
+  top: 0;
   left: 0;
-  z-index: 2;
   filter: blur(1px);
   transform: rotate(30deg);
 }
@@ -120,8 +109,7 @@ html {
 .middle {
   width: 15rem;
   position: absolute;
-  bottom: 10.125rem;
-  // left: 69.375rem;
-  z-index: 4;
+  top: 0;
+  left: 0;
   transform: rotate(33deg);
 }
