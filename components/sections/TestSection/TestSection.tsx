@@ -249,11 +249,18 @@ export const TestSection = () => {
     <section className={styles.section}>
       <div className={styles.stickyContainer}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>Rychlé a jednoduché QR řešení</h1>
+          <h1 className={styles.title}>
+            Rychlé a<br />
+            jednoduché QR řešení
+          </h1>
           <p className={styles.paragraph}>
-            MúzaPay nabízí rychlé a bezpečné QR platby, které zjednodušují čerpání benefitů přímo
-            přes mobilní zařízení. Bez fyzických karet či papírových poukazů poskytuje moderní a
-            efektivní způsob, jak pohodlně spravovat zaměstnanecké výhody.
+            MúzaPay nabízí rychlé a bezpečné QR platby, které zjednodušují
+            <br />
+            čerpání benefitů přímo přes mobilní zařízení. Bez fyzických karet či
+            <br />
+            papírových poukazů poskytuje moderní a efektivní způsob, jak
+            <br />
+            pohodlně spravovat zaměstnanecké výhody.
           </p>
           <div className={styles.qrContainer}>
             <div className={styles.qrWrapper}>
