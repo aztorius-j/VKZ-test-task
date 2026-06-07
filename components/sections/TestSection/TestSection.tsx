@@ -17,7 +17,7 @@ const easeOverlay = CustomEase.create(
 
 const easeQrCode = CustomEase.create(
   'easeQrCode',
-  'M0,0 C0.272,0 0.251,0.155 0.285,0.482 0.329,0.914 0.744,1 1,1 '
+  'M0,0 C0.272,0 0.158,0.366 0.277,0.652 0.441,1.053 0.744,1 1,1 '
 )
 
 const easeAnimCont = CustomEase.create(
@@ -25,11 +25,16 @@ const easeAnimCont = CustomEase.create(
   'M0,0 C0.124,0.291 0.182,0.626 0.448,0.816 0.579,0.909 0.752,1 1,1 '
 )
 
+const easeUpEl = CustomEase.create(
+  'easeUpEl',
+  'M0,0 C0.178,0 0.239,0.147 0.259,0.208 0.323,0.411 0.355,0.518 0.441,0.686 0.496,0.795 0.545,0.864 0.694,0.931 0.78,0.969 0.869,1 1,1 '
+)
+
 export const TestSection = () => {
   const isSecondAnimationTriggered = useRef(false)
 
   useGSAP(() => {
-    const iPhoneHeight = 52.25
+    const iPhoneHeight = 47.25
     const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize)
     const section = document.querySelector(`.${styles.section}`) as HTMLElement
     const stickyContainer = document.querySelector(`.${styles.stickyContainer}`) as HTMLElement
@@ -41,6 +46,9 @@ export const TestSection = () => {
     const qrRect = qrContainerEl.getBoundingClientRect()
     const animContainer = document.querySelector(`.${styles.animationContainer}`) as HTMLElement
     const iphone = document.querySelector(`.${styles.iphone}`) as HTMLElement
+    const upEl = document.querySelector(`.${styles.up}`) as HTMLElement
+    const middleEl = document.querySelector(`.${styles.middle}`) as HTMLElement
+    const downEl = document.querySelector(`.${styles.down}`) as HTMLElement
     document.documentElement.style.setProperty('--iphoneHeight', `${iPhoneHeight}rem`)
 
     // TITLE
@@ -158,7 +166,7 @@ export const TestSection = () => {
 
         gsap.to(qrCode, {
           y: targetY,
-          duration: 1.7,
+          duration: 2.1,
           ease: easeQrCode,
           onComplete: () => {
             const updateQrY = () => {
@@ -171,9 +179,9 @@ export const TestSection = () => {
         })
 
         gsap.to(qrCode, {
-          scale: 2.5,
+          scale: 2.32,
           transformOrigin: 'center center',
-          duration: 0.5,
+          duration: 1.5,
           delay: 0.3,
           ease: 'power1.out',
         })
@@ -184,7 +192,7 @@ export const TestSection = () => {
 
         gsap.to(animContainer, {
           y: getContainerTargetY(),
-          duration: 1.95,
+          duration: 1.9,
           delay: 0.05,
           ease: easeAnimCont,
           onComplete: () => {
@@ -194,12 +202,43 @@ export const TestSection = () => {
           },
         })
 
+        // IPHONE
         gsap.to(iphone, {
           x: 0,
           y: '3.8%',
           scale: 1,
           delay: 0.2,
           duration: 1.7,
+          ease: 'power1.out',
+        })
+
+        //UP (BALL)
+        gsap.to(upEl, {
+          y: '0',
+          duration: 1.7,
+          ease: easeUpEl,
+        })
+
+        // MIDDLE
+        gsap.to(middleEl, {
+          y: 0,
+          duration: 1.7,
+          ease: 'power1.out',
+        })
+
+        gsap.to(middleEl, {
+          rotate: '21.1',
+          duration: 1.5,
+          delay: 0.4,
+          ease: 'power1.out',
+        })
+
+        // DOWN
+        gsap.to(downEl, {
+          y: 0,
+          rotate: '28.5',
+          duration: 1.5,
+          delay: 0.5,
           ease: 'power1.out',
         })
       },
@@ -223,12 +262,12 @@ export const TestSection = () => {
           </div>
         </div>
         <div className={styles.animationContainer}>
-          <div className={styles.iphoneWrapper}>
+          <div className={styles.centerContainer}>
             <img src='/img/iphone.png' alt='iphone' className={styles.iphone} />
+            <img src='/img/up.png' alt='up' className={styles.up} />
+            <img src='/img/middle.png' alt='middle' className={styles.middle} />
+            <img src='/img/down.png' alt='down' className={styles.down} />
           </div>
-          {/* <img src='/img/up.png' alt='up' className={styles.up} /> */}
-          {/* <img src='/img/down.png' alt='down' className={styles.down} /> */}
-          {/* <img src='/img/middle.png' alt='middle' className={styles.middle} /> */}
         </div>
       </div>
     </section>
