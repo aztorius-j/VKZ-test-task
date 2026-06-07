@@ -99,11 +99,11 @@ export const TestSection = () => {
     const updateAnimContainerY = () => {
       if (isSecondAnimationTriggered.current) return
       const freshRect = qrContainerEl.getBoundingClientRect()
-      gsap.set(animContainer, { y: -(window.innerHeight - freshRect.bottom - 32) })
+      gsap.set(animContainer, { y: -(window.innerHeight - freshRect.bottom - rootFontSize * 2) })
     }
 
     gsap.to(animContainer, {
-      y: -(window.innerHeight - qrRect.bottom - 32),
+      y: -(window.innerHeight - qrRect.bottom - rootFontSize * 2),
       duration: 1.65,
       delay: 0.6,
       ease: 'power2.out',
