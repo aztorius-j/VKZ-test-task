@@ -4,16 +4,15 @@ html {
   overscroll-behavior: none;
 }
 
-.section {
-  min-height: 100svh;
+.dummySection {
+  height: 100svh;
   background-color: #f7f5ff;
 }
 
-.stickyContainer {
-  display: flex;
-  justify-content: center;
-  height: 100svh;
-  padding-inline: 0.5rem;
+.section {
+  min-height: 100svh;
+  padding-top: 17.5rem;
+  background-color: #f7f5ff;
 }
 
 .textContainer {
@@ -21,8 +20,7 @@ html {
   flex-direction: column;
   gap: 1rem;
   max-width: 62rem;
-  padding-bottom: 13.5rem;
-  margin-top: auto;
+  margin: 0 auto 1rem auto;
 }
 
 .title {
@@ -41,20 +39,30 @@ html {
   text-align: center;
 }
 
+.stickyContainer {
+  display: flex;
+  justify-content: center;
+  height: 300svh;
+  position: relative;
+}
+
 .qrContainer {
   display: flex;
   justify-content: center;
-  height: 6.25rem;
+  align-items: center;
+  width: 100vw;
+  height: 100svh;
+  padding: 0.5rem;
   position: relative;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  transform: translateY(calc(-50% + var(--qrCodeSize) / 2));
 }
 
-.qrWrapper {
+.qrPurpleBg {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6.25rem;
-  aspect-ratio: 1 / 1;
   background-color: #e6c3ff;
   border-radius: 1.25rem;
 }
@@ -63,32 +71,22 @@ html {
   width: 4rem;
 }
 
-.animationContainer {
-  width: 100vw;
-  height: var(--iphoneHeight);
-  position: absolute;
-  top: 100svh;
-  left: 0;
-  z-index: 11;
-}
-
 .centerContainer {
   aspect-ratio: 200 / 209;
-  height: var(--iphoneHeight);
+  height: var(--iPhoneHeight);
   font-size: 0;
-  position: relative;
-  top: 0;
+  position: absolute;
+  top: 10rem;
   left: 50%;
-  z-index: 10;
-  transform: translateX(-66.8%);
+  will-change: transform;
+  transform: translateX(-58.35%);
 }
 
 .iphone {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 8;
+  width: var(--iPhoneWidth);
+  will-change: transform;
+  position: relative;
+  z-index: 2;
 }
 
 .up {
@@ -96,7 +94,7 @@ html {
   position: absolute;
   top: -11%;
   left: 6%;
-  z-index: 7;
+  z-index: 1;
   filter: blur(4px);
   transform: translateY(150%);
 }
