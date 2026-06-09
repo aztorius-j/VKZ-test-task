@@ -10,11 +10,9 @@ gsap.registerPlugin(SplitText, ScrollTrigger)
 
 export const TestSection = () => {
   useGSAP(() => {
-    const iPhoneHeight = 52
-    const iPhoneWidth = iPhoneHeight * (199 / 208)
-    const qrCodeSize = iPhoneHeight * (25 / 208)
+    const rootUnit = 3
     const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize)
-    const qrCodeSizeRem = iPhoneHeight * (25 / 208) * rootFontSize
+    const qrCodeSize = rootUnit * 1.5625 * rootFontSize
     const stickyContainer = document.querySelector(`.${styles.stickyContainer}`) as HTMLElement
     const paragraph = document.querySelector(`.${styles.paragraph}`) as HTMLElement
     const splitTitle = new SplitText(`.${styles.title}`, { type: 'lines' })
@@ -26,9 +24,7 @@ export const TestSection = () => {
     const upEl = document.querySelector(`.${styles.up}`) as HTMLElement
     const middleEl = document.querySelector(`.${styles.middle}`) as HTMLElement
     const downEl = document.querySelector(`.${styles.down}`) as HTMLElement
-    document.documentElement.style.setProperty('--iPhoneHeight', `${iPhoneHeight}rem`)
-    document.documentElement.style.setProperty('--iPhoneWidth', `${iPhoneWidth}rem`)
-    document.documentElement.style.setProperty('--qrCodeSize', `${qrCodeSize}rem`)
+    document.documentElement.style.setProperty('--rootUnit', `${rootUnit}rem`)
 
     // ------------------
     // *** FIRST PART ***
@@ -94,7 +90,7 @@ export const TestSection = () => {
         trigger: stickyContainer,
         pin: true,
         scrub: true,
-        start: 'top+=50 center',
+        start: `top+=${rootUnit * 12.5} center`,
         end: 'bottom bottom',
         pinSpacing: false,
         invalidateOnRefresh: true,
@@ -104,26 +100,48 @@ export const TestSection = () => {
     // QR WRAPPER
     animationTimeLine.fromTo(
       qrPurpleBg,
-      { width: qrCodeSizeRem, height: qrCodeSizeRem },
-      { width: '100%', height: '100%', ease: 'none' }
+      { width: qrCodeSize, height: qrCodeSize },
+      { width: '100%', height: '100%', ease: 'none', duration: 0.62 },
+      '<'
     )
 
     // QR CODE
-    animationTimeLine.fromTo(qrCode, { scale: 1 }, { scale: 2.32 }, '<')
+    animationTimeLine.fromTo(qrCode, { scale: 1 }, { scale: 2.32, duration: 0.9 }, '<')
 
     // CENTER CONTAINER
-    animationTimeLine.fromTo(centerContainer, { y: 0 }, { y: '-58.75%' }, '<')
+    animationTimeLine.fromTo(
+      centerContainer,
+      { x: '-58.35%', y: 0 },
+      { x: '-58.35%', y: '-58.75%', duration: 0.9 },
+      '<'
+    )
 
     // IPHONE
     animationTimeLine.fromTo(
       iphone,
       { x: 0, scale: 1.25, transformOrigin: 'right top' },
-      { x: '-8.5%', scale: 1, transformOrigin: 'right top' },
+      { x: '-8.5%', scale: 1, transformOrigin: 'right top', duration: 0.8 },
       '<'
     )
 
     //UP (BALL)
-    animationTimeLine.fromTo(upEl, { y: 0 }, { y: -100 })
+    animationTimeLine.fromTo(upEl, { y: '250%' }, { y: 0, duration: 1 }, '<')
+
+    // MIDDLE
+    animationTimeLine.fromTo(
+      middleEl,
+      { y: '130%', rotate: '64deg' },
+      { y: 0, rotate: '28deg', duration: 0.6 },
+      '<+=0.4'
+    )
+
+    // DOWN
+    animationTimeLine.fromTo(
+      downEl,
+      { y: '280%', rotate: '7deg' },
+      { y: 0, rotate: '29deg', duration: 0.6 },
+      '<'
+    )
   })
 
   return (
@@ -131,18 +149,11 @@ export const TestSection = () => {
       <section className={styles.dummySection}></section>
       <section className={styles.section}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>
-            Rychlé a<br />
-            jednoduché QR řešení
-          </h1>
+          <h1 className={styles.title}>Rychlé a jednoduché QR řešení</h1>
           <p className={styles.paragraph}>
-            MúzaPay nabízí rychlé a bezpečné QR platby, které zjednodušují
-            <br />
-            čerpání benefitů přímo přes mobilní zařízení. Bez fyzických karet či
-            <br />
-            papírových poukazů poskytuje moderní a efektivní způsob, jak
-            <br />
-            pohodlně spravovat zaměstnanecké výhody.
+            MúzaPay nabízí rychlé a bezpečné QR platby, které zjednodušují čerpání benefitů přímo
+            přes mobilní zařízení. Bez fyzických karet či papírových poukazů poskytuje moderní a
+            efektivní způsob, jak pohodlně spravovat zaměstnanecké výhody.
           </p>
         </div>
         <div className={styles.stickyContainer}>
@@ -153,9 +164,9 @@ export const TestSection = () => {
           </div>
           <div className={styles.centerContainer}>
             <img src='/img/iphone.png' alt='iphone' className={styles.iphone} />
-            {/* <img src='/img/up.png' alt='up' className={styles.up} /> */}
-            {/* <img src='/img/middle.png' alt='middle' className={styles.middle} />
-              <img src='/img/down.png' alt='down' className={styles.down} /> */}
+            <img src='/img/up.png' alt='up' className={styles.up} />
+            <img src='/img/middle.png' alt='middle' className={styles.middle} />
+            <img src='/img/down.png' alt='down' className={styles.down} />
           </div>
         </div>
       </section>

@@ -56,7 +56,7 @@ html {
   position: relative;
   top: 0;
   left: 0;
-  transform: translateY(calc(-50% + var(--qrCodeSize) / 2));
+  transform: translateY(calc(-50% + (var(--rootUnit) * 1.5625) / 2));
 }
 
 .qrPurpleBg {
@@ -68,52 +68,51 @@ html {
 }
 
 .qrCode {
-  width: 4rem;
+  width: var(--rootUnit);
 }
 
 .centerContainer {
   aspect-ratio: 200 / 209;
-  height: var(--iPhoneHeight);
+  height: calc(var(--rootUnit) * 13);
   font-size: 0;
   position: absolute;
-  top: 10rem;
+  top: calc(var(--rootUnit) * 2.5);
   left: 50%;
   will-change: transform;
-  transform: translateX(-58.35%);
 }
 
 .iphone {
-  width: var(--iPhoneWidth);
+  width: calc(var(--rootUnit) * 12.4375);
   will-change: transform;
   position: relative;
   z-index: 2;
 }
 
 .up {
-  width: 20.25rem;
+  width: calc(var(--rootUnit) * 5.25);
   position: absolute;
-  top: -11%;
-  left: 6%;
+  top: -13%;
+  left: 1%;
   z-index: 1;
   filter: blur(4px);
-  transform: translateY(150%);
+  will-change: transform;
 }
 
 .middle {
-  width: 14.25rem;
+  width: calc(var(--rootUnit) * 3.875);
   position: absolute;
-  top: 21%;
-  right: -21.5%;
-  z-index: 9;
-  transform: translateY(70%) rotate(70deg);
+  top: 16%;
+  right: -10%;
+  z-index: 3;
+  will-change: transform;
 }
 
 .down {
-  width: 35rem;
+  width: calc(var(--rootUnit) * 8.5);
   position: absolute;
-  bottom: -11%;
-  left: -11.6%;
-  z-index: 7;
+  bottom: 3%;
+  left: -22.5%;
+  z-index: 1;
   filter: blur(1px);
-  transform: translateY(40%) rotate(10deg);
+  will-change: transform;
 }
