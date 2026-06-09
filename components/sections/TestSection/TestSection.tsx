@@ -10,7 +10,7 @@ gsap.registerPlugin(SplitText, ScrollTrigger)
 
 export const TestSection = () => {
   useGSAP(() => {
-    const rootUnit = 3
+    const rootUnit = 3.5 // adjust for responsive breakpoints
     const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize)
     const qrCodeSize = rootUnit * 1.5625 * rootFontSize
     const stickyContainer = document.querySelector(`.${styles.stickyContainer}`) as HTMLElement
